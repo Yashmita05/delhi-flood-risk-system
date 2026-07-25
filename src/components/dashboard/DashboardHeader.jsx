@@ -1,54 +1,29 @@
 export default function DashboardHeader() {
-  const today = new Date().toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
         marginBottom: "30px",
       }}
     >
-      <div>
-        <h1 className="page-title">
-          Delhi Flood Risk Monitoring Dashboard
-        </h1>
-
-        <p className="page-subtitle">
-          Real-Time Flood Monitoring and Risk Assessment
-        </p>
-      </div>
-
-      <div
+      <h1
         style={{
-          textAlign: "right",
+          color: "#073B4C",
+          fontSize: "30px",
+          fontWeight: "600",
+          marginBottom: "8px",
         }}
       >
-        <p
-          style={{
-            color: "#666",
-            fontSize: "14px",
-          }}
-        >
-          Last Updated
-        </p>
+        Delhi Flood Risk Monitoring Dashboard
+      </h1>
 
-        <h3>{today}</h3>
-
-        <span
-          style={{
-            color: "#2E7D32",
-            fontWeight: 600,
-          }}
-        >
-          ● System Active
-        </span>
-      </div>
+      <p
+        style={{
+          color: "#6b7280",
+          fontSize: "16px",
+        }}
+      >
+        Live Monitoring System
+      </p>
     </div>
   );
 }

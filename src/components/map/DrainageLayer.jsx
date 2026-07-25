@@ -7,10 +7,11 @@ export default function DrainageLayer() {
   const [hotspots, setHotspots] = useState([]);
 
   useEffect(() => {
-    Papa.parse("/data/delhi_drainage_dummy_dataset.csv", {
+    Papa.parse("/data/delhi_drainage _dummy_dataset.csv", {
       download: true,
       header: true,
       complete: (results) => {
+        console.log(results.data[0]); // Add this
         setDrainage(results.data);
       },
     });
@@ -35,7 +36,16 @@ export default function DrainageLayer() {
       {drainage.map((drain, index) => {
         const hotspot = hotspots[index];
 
-        if (!hotspot) return null;
+        if (
+  !hotspot ||
+  !hotspot.latitude ||
+  !hotspot.longitude ||
+  isNaN(Number(hotspot.latitude)) ||
+  isNaN(Number(hotspot.longitude))
+) {
+  console.log("Bad hotspot:", hotspot);
+  return null;
+}
 
         return (
           <CircleMarker
