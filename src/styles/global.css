@@ -1,154 +1,162 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* =========================================================
+   Apple visionOS / Spatial Liquid Glass Global Stylesheet
+   ========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --spring-curve: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --glass-surface: rgba(28, 36, 48, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-shadow: 0 16px 36px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --glass-glow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
-body{
-    font-family:'Inter',sans-serif;
-    background:#eef2f6;
-    color:#2d3748;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-button{
-    cursor:pointer;
-    border:none;
-    font-family:inherit;
-}
-
-input,
-select{
-    font-family:inherit;
-}
-
-.page{
-    padding:28px;
-}
-
-.page-title{
-    font-size:30px;
-    font-weight:600;
-    color:#073B4C;
-    margin-bottom:6px;
-}
-
-.page-subtitle{
-    color:#6b7280;
-    margin-bottom:28px;
-}
-
-.card{
-    background:white;
-    border:1px solid #dfe6ee;
-    border-radius:10px;
-    padding:20px;
-}
-
-.shadow{
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
-}
-.navbar {
-  height: 70px;
-  background: #073B4C;
-  color: white;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0 30px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo h2 {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.logo-icon {
-  font-size: 28px;
-}
-
-.nav-links {
-  list-style: none;
-
-  display: flex;
-  align-items: center;
-  gap: 35px;
-}
-
-.nav-links li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.nav-links li:hover {
-  color: #9fd3ff;
-}
-/* ================= NAVBAR ================= */
-
-.navbar {
-  height: 70px;
-  background: #073b4c;
-  color: white;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0 30px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo h2 {
-  font-size: 22px;
-  font-weight: 600;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo-icon {
-  font-size: 28px;
+html, body {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #0F172A 100%);
+  background-attachment: fixed;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.nav-menu {
+/* Ensure #root has no centering rules and fits viewport height cleanly */
+#root {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-align: left !important;
   display: flex;
-  gap: 25px;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.nav-item {
-  color: white;
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  transition: 0.2s;
+/* Tabular numbers for clean telemetry readouts */
+.tabular-nums, [data-tabular] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
-.nav-item:hover {
-  background: rgba(255,255,255,0.15);
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.active {
-  background: rgba(255,255,255,0.2);
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Leaflet Container Overrides for visionOS Spatial Glass */
+.leaflet-container {
+  font-family: var(--font-sans) !important;
+  background: #E2E8F0 !important;
+  outline: none;
+}
+
+/* Ensure map tiles render with natural bright street colours */
+.leaflet-tile-pane,
+.leaflet-tile {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Remove default Leaflet control zoom when hidden */
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+/* Leaflet attribution subtle styling */
+.leaflet-control-attribution {
+  background: rgba(15, 23, 42, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 10px !important;
+  padding: 2px 8px !important;
+  border-radius: 8px 0 0 0 !important;
+  margin: 0 !important;
+}
+
+.leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none !important;
+}
+
+/* Apple visionOS Frosted Dark Glass Popups */
+.leaflet-popup-content-wrapper {
+  background: rgba(24, 32, 45, 0.88) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+  padding: 8px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(24, 32, 45, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.5 !important;
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.leaflet-popup-content h3 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 6px !important;
+}
+
+.leaflet-popup-content hr {
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+  margin: 10px 0 !important;
+}
+
+.leaflet-popup-content b {
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-weight: 500 !important;
+}
+
+.leaflet-popup-close-button {
+  color: rgba(255, 255, 255, 0.6) !important;
+  top: 12px !important;
+  right: 12px !important;
+  font-size: 18px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #FFFFFF !important;
 }

@@ -12,7 +12,6 @@ export default function HeatmapLayer({ rainfall = "20" }) {
 
     // rainfall intensity multiplier
     let multiplier = 1;
-
     if (rainfall === "50") multiplier = 1.3;
     else if (rainfall === "100") multiplier = 1.8;
     else if (rainfall === "real") multiplier = 2.2;
@@ -29,8 +28,9 @@ export default function HeatmapLayer({ rainfall = "20" }) {
 
             govt.data.forEach((row) => {
               if (row.location) {
-                priorityMap[row.location.trim().toLowerCase()] =
-                  Number(row.priority_score);
+                priorityMap[row.location.trim().toLowerCase()] = Number(
+                  row.priority_score
+                );
               }
             });
 
@@ -50,15 +50,15 @@ export default function HeatmapLayer({ rainfall = "20" }) {
             });
 
             heatLayer = L.heatLayer(heatData, {
-              radius: 18,
-              blur: 12,
+              radius: 20,
+              blur: 14,
               maxZoom: 17,
               minOpacity: 0.35,
               gradient: {
-                0.2: "#2ecc71",
-                0.5: "#f1c40f",
-                0.7: "#e67e22",
-                1.0: "#e74c3c",
+                0.2: "#10B981",
+                0.5: "#F59E0B",
+                0.7: "#F97316",
+                1.0: "#EF4444",
               },
             }).addTo(map);
           },
@@ -67,7 +67,9 @@ export default function HeatmapLayer({ rainfall = "20" }) {
     });
 
     return () => {
-      if (heatLayer) map.removeLayer(heatLayer);
+      if (heatLayer && map) {
+        map.removeLayer(heatLayer);
+      }
     };
   }, [map, rainfall]);
 
