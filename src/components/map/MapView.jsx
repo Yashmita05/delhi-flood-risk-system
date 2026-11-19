@@ -75,9 +75,9 @@ export default function MapView({
         className="spatial-leaflet-map"
         style={{ height: "100%", width: "100%" }}
       >
-        {/* Free original OpenStreetMap tile layer (restored, no API key required) */}
+        {/* Free original OpenStreetMap tile layer (no subdomain to prevent DNS resolution errors) */}
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
